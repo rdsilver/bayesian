@@ -1,3 +1,3 @@
 Bayesian Reasoning Quiz
 
-https://github.com/rdsilver/bayesian
+https://rdsilver.github.io/bayesian/

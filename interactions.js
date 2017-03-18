@@ -141,7 +141,7 @@ function state5Method() {
 		correctTimesMoreLikely + ' more likely'
 		)}, 
 	250);
-	$('#interactiveDiv').append($('#interactiveDiv').clone().attr('id', 'interactiveDiv2'));
+	$('body').append($('#interactiveDiv').clone().attr('id', 'interactiveDiv2'));
 	$('#interactiveDiv2').prepend('<p> Correct Bars: </p>');
 	$('#interactiveDiv2 #allergyBar').width(78 * .3 + '%');
 	$('#interactiveDiv2 #allergyBar').width(78 * .3 + '%');

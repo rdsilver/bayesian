@@ -145,7 +145,7 @@ function state5Method() {
 	setTimeout(function(){changeInstructionText(
 		'Answers: ' +
 		chosenAnswer + ', ' +
-		timesMoreLikely + ' times more likely. Correct Answers:' +
+		timesMoreLikely + ' times more likely. Correct Answers: ' +
 		correctAnswer + ', ' +
 		correctTimesMoreLikely + ' more likely'
 		)}, 

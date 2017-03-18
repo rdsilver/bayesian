@@ -109,6 +109,7 @@ body {
 	margin-top: 25px;
 	margin-left: 10%;
   display: block;
+  clear: left;
 }
 
 #answerButtons {

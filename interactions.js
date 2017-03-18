@@ -119,6 +119,7 @@ function state2Method() {
 	noAllergyBarColor1 = '#123';
 	noAllergyBarColor2 = '#7CA1C4';
 	styleRange($noAllergyBar, val, noAllergyBarColor1, noAllergyBarColor2);
+	$('#numberLine').css('margin-top', '49px');
 }
 
 function state3Method() {

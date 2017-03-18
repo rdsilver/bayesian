@@ -25,7 +25,7 @@ body {
 	padding-bottom: 10px;
 	box-shadow: 0px 0px 5px;
 	text-shadow: 0 0 3px #DDD;
-	min-width: 732px;
+	min-width: 741px;
 }
 
 #theQuestion {
@@ -37,7 +37,7 @@ body {
 	box-shadow: 0px 0px 5px #AAA;
 	font-size: 22px;
 	color: #555;
-	min-width: 732px;
+	min-width: 741px;
 	max-width: 1200px;
 }
 
@@ -53,7 +53,7 @@ body {
 	box-shadow: 0px 0px 5px #AAA;
 	font-size: 22px;
 	color: #555;
-	min-width: 732px;
+	min-width: 741px;
 	max-width: 1200px;
 }
 
@@ -66,7 +66,7 @@ body {
 	box-shadow: 0px 0px 5px #AAA;
 	font-size: 22px;
 	color: #555;
-	min-width: 732px;
+	min-width: 741px;
 	max-width: 1200px;
 }
 
@@ -78,7 +78,7 @@ body {
 	box-shadow: 0px 0px 5px #AAA;
 	font-size: 18px;
 	color: #555;
-	min-width: 732px;
+	min-width: 741px;
 	border-top-right-radius: 4px;
 	border-top-left-radius: 4px;
 	max-width: 1200px;

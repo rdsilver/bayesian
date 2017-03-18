@@ -107,6 +107,8 @@ body {
 	max-height: 72px;
 	height: auto;
 	margin-top: 25px;
+	margin-left: 10%;
+  display: block;
 }
 
 #answerButtons {

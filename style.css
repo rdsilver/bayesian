@@ -1,0 +1,138 @@
+
+body {
+	background-color: rgb(150, 150, 150);
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+  padding: 0; 
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.centered {
+	text-align: center;
+    margin: 0 auto;
+}
+
+.light_blue {
+	color: #666;
+}
+
+.hero_title {
+	background-color: #BBB;
+	padding: 5px 0px 10px;
+	padding-bottom: 10px;
+	box-shadow: 0px 0px 5px;
+	text-shadow: 0 0 3px #DDD;
+}
+
+#theQuestion {
+	width: 80%;
+	height: 140px;
+	background: #BBB;
+	margin-top: 20px;
+	padding-top: 20px;
+	box-shadow: 0px 0px 5px #AAA;
+	font-size: 22px;
+	color: #555;
+	min-width: 550px;
+}
+
+#theQuestion p {
+	margin: 0;
+}
+
+#interactiveDiv {
+	width: 80%;
+	height: 220px;
+	background: #BBB;
+	padding-top: 10px;
+	box-shadow: 0px 0px 5px #AAA;
+	font-size: 22px;
+	color: #555;
+	min-width: 550px;
+}
+
+#interactiveDiv2 {
+	width: 80%;
+	height: 220px;
+	margin-top: 70px;
+	background: #BBB;
+	padding-top: 10px;
+	box-shadow: 0px 0px 5px #AAA;
+	font-size: 22px;
+	color: #555;
+	min-width: 550px;
+}
+
+#instructionsDiv {
+	width: 60%;
+	height: 22px;
+	background: #7dc17c;
+	margin-top: 20px;
+	box-shadow: 0px 0px 5px #AAA;
+	font-size: 18px;
+	color: #555;
+	min-width: 550px;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+}
+
+#interactiveDiv p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 18;
+	font-weight: bold;
+}
+
+#noAllergyDiv {
+	margin-top: 30px;
+}
+
+#numberLine {
+	width: 80%;
+	max-height: 72px;
+	height: auto;
+	margin-top: 25px;
+}
+
+#answerButtons {
+	display: inline;
+}
+
+button {
+	margin-left: 10px;
+	height: 17px;
+	line-height: 11px;
+}
+
+input[type="number"] {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 52px;
+	height: 18px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-apperance: none;
+  height: 20px;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0, #7CA1C4),
+    color-stop(0, #ccc)
+  );
+  width: 78%;
+  outline: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  background-color: #E9E9E9;
+  height: 20px;
+  width: 0px;
+}
+

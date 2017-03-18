@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="interactions.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <title>Bayesian Reasoning</title>
+  </head>
+
+  <body>
+    <h1 class='light_blue centered hero_title'>Bayesian Reasoning</h1>
+
+    <div class='centered' id='theQuestion'>
+      <p><span id='withAllergies'>X</span>% of people have allergies.</p>
+      <p><span id='outgoingAllergiests'>X</span>% of people who have allergies are outgoing.</p>
+      <p><span id='outgoingNormal'>X</span>% of people who do not have allergies are outgoing.</p>
+      <br>
+      <p>A person is outgoing.</p>
+    </div>
+
+
+    <div class='centered' id='instructionsDiv'>
+      Click on the first range with the percent of people who have allergies.
+    </div>
+
+    <div class='centered' id='interactiveDiv'>
+      <div id='allergyBarDiv'>
+        <p> % of people who have allergies </p>
+        <input id='allergyBar' type="range" min="1" max="1000" step="1" value="0">
+      </div>
+
+      <div id='noAllergyDiv'>
+        <p> % of people who do not have allergies </p>
+        <input id='noAllergyBar' type="range" min="1" max="1000" step="1" value="0">
+      </div>
+
+      <img id='numberLine' src="numberScale.png" alt="Smiley face">    
+    </div>
+
+  </body>
+</html>

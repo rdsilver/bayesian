@@ -16,6 +16,10 @@ var allergyBarColor2 = '#CCC';
 var noAllergyBarColor1 = '#7CA1C4';
 var noAllergyBarColor2 = '#CCC';
 
+
+var percentWithAllergies;
+var	percentWithAllergiesAndOutgoing;
+var	percentNoAllergiesAndOutgoing;
 var chosenAnswer;
 var correctAnswer;
 var userTimesMoreLikely;
@@ -57,9 +61,14 @@ function instructionsState() {
 	});
 
 	$('body').on('click', 'button', function() {
-		if (state === 4) {
+		if (state === 4 && (this.id === 'allergiesButton' || this.id === 'noAllergiesButton')) {
 			state4Method($(this));
 			state++;
+		}
+		
+		if (this.id === 'newProblem') {
+			reset();
+			state = 0;
 		}
 	});
 
@@ -78,7 +87,7 @@ function state0Method() {
 function state1Method() {
 	setTimeout(function(){changeInstructionText(
 		'Click in the first range to set the proportion of people with allergies who are outgoing.', 
-		 {'font-size':'13px', 'line-height':'22px'})}, 250);
+		 null)}, 250);
 
 	var allergyBarValue = parseInt($allergyBar.val()) / 1000;
 	var newAllergyBarCss = {'float': 'left',
@@ -119,7 +128,7 @@ function state3Method() {
 			"<button id='allergiesButton'>Allergies</button></div>" +
 			"<button id='noAllergiesButton'>No Allergies</button></div>" +
 		"</div>",
-		 {'font-size':'13px'})}, 250);
+		 null)}, 250);
 }
 
 function state4Method(el) {
@@ -143,13 +152,13 @@ function state5Method() {
 	250);
 	$('body').append($('#interactiveDiv').clone().attr('id', 'interactiveDiv2'));
 	$('#interactiveDiv2').prepend('<p> Correct Bars: </p>');
-	$('#interactiveDiv2 #allergyBar').width(78 * .3 + '%');
-	$('#interactiveDiv2 #allergyBar').width(78 * .3 + '%');
-	styleRange($('#interactiveDiv2 #allergyBar'), .6, allergyBarColor1, allergyBarColor2);
+	$('#interactiveDiv2 #allergyBar').width(78 * (percentWithAllergies/100) + '%');
+	$('#interactiveDiv2 #allergyBar').width(78 * (percentWithAllergies/100)  + '%');
+	styleRange($('#interactiveDiv2 #allergyBar'), (percentWithAllergiesAndOutgoing/100), allergyBarColor1, allergyBarColor2);
 
-	$('#interactiveDiv2 #noAllergyBar').width(78 * .7 + '%');
-	$('#interactiveDiv2 #noAllergyBar').width(78 * .7 + '%');
-	styleRange($('#interactiveDiv2 #noAllergyBar'), .4, noAllergyBarColor1, noAllergyBarColor2);
+	$('#interactiveDiv2 #noAllergyBar').width(78 * (percentWihoutAllergies/100) + '%');
+	$('#interactiveDiv2 #noAllergyBar').width(78 * (percentWihoutAllergies/100) + '%');
+	styleRange($('#interactiveDiv2 #noAllergyBar'), (percentNoAllergiesAndOutgoing/100), noAllergyBarColor1, noAllergyBarColor2);
 }
 
 function changeInstructionText(text, style = null) {
@@ -182,17 +191,47 @@ function styleRange (el, val, color1, color2) {
          );
 }
 
+function reset () {
+	$('#interactiveDiv2').remove();
+	changeInstructionText('Click on the first range with the percent of people who have allergies.');
+	allergyBarColor1 = '#7CA1C4';
+  allergyBarColor2 = '#CCC';
+  noAllergyBarColor1 = '#7CA1C4';
+  noAllergyBarColor2 = '#CCC';
+  $allergyBar.val(0);
+  $noAllergyBar.val(0);
+  $allergyBar.css('width', '78%');
+  $noAllergyBar.css('width', '78%');
+  styleRange($allergyBar, 0, allergyBarColor1, allergyBarColor2);
+  styleRange($noAllergyBar, 0, noAllergyBarColor1, noAllergyBarColor2);
+  createNumbers();
+}
+
 
 // Creates scenario numbers
 function createNumbers() {
-	var percentWithAllergies = 30;
-	var percentWithAllergiesAndOutgoing = 60;
-	var percentNoAllergiesAndOutgoing = 40;
+	percentWithAllergies = 30;
+	percentWithAllergiesAndOutgoing = 60;
+	percentNoAllergiesAndOutgoing = 40;
 	correctAnswer = 'No Allergies';
 	correctTimesMoreLikely = 1.5;
 
 	if (!firstRun) {
-		// Do semi-random numbers
+		percentWithAllergies = Math.round(Math.random() * 90) + 10;
+		percentWihoutAllergies = 100 - percentWithAllergies;
+		percentWithAllergiesAndOutgoing = Math.round(Math.random() * 100);
+		percentNoAllergiesAndOutgoing = Math.round(Math.random() * 100);
+		var totalOutgoingAllergyPeeps = percentWithAllergies * percentWithAllergiesAndOutgoing;
+		var totalOutgoingWithoutAllergyPeeps = percentWihoutAllergies * percentNoAllergiesAndOutgoing;
+
+		if (totalOutgoingAllergyPeeps > totalOutgoingWithoutAllergyPeeps) {
+			correctAnswer = 'Allergies'
+			correctTimesMoreLikely = round(totalOutgoingAllergyPeeps/totalOutgoingWithoutAllergyPeeps, 2);
+		} else {
+			correctAnswer = 'No Allergies';
+			correctTimesMoreLikely = round(totalOutgoingWithoutAllergyPeeps/totalOutgoingAllergyPeeps, 2);
+		}
+
 	}
 
 	// Fill these values in the html
@@ -200,4 +239,8 @@ function createNumbers() {
 	$('#outgoingAllergiests').html(percentWithAllergiesAndOutgoing);
 	$('#outgoingNormal').html(percentNoAllergiesAndOutgoing);
 	firstRun = false;
+}
+
+function round(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }

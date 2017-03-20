@@ -1,6 +1,5 @@
 var firstRun = true;
 
-
 // state 0 = click allergy bar
 // state 1 = click no allergy bar
 // state 2 = click allergy bar proportion
@@ -25,6 +24,7 @@ var correctAnswer;
 var userTimesMoreLikely;
 var correctTimesMoreLikely;
 
+// When page loads
 $(function() {
 	$allergyBar = $('#allergyBar');
 	$noAllergyBar = $('#noAllergyBar');
@@ -34,7 +34,7 @@ $(function() {
 	instructionsState();
 });
 
-// Gives the correct instructions when a range is clicked 
+// Sets up the listeners which change the states and instructions when interacted with.
 function instructionsState() {
 	$allergyBar.on("change", function () {
 		if (state === 0) {
@@ -75,6 +75,7 @@ function instructionsState() {
 	$('body').keypress(function (e) {
 	  if (e.which == 13 && state === 5) {
 	    state5Method();
+	    state = -1;
 	  }
 	});
 
@@ -157,8 +158,8 @@ function state5Method() {
 	$('#interactiveDiv2 #allergyBar').width(78 * (percentWithAllergies/100)  + '%');
 	styleRange($('#interactiveDiv2 #allergyBar'), (percentWithAllergiesAndOutgoing/100), allergyBarColor1, allergyBarColor2);
 
-	$('#interactiveDiv2 #noAllergyBar').width(78 * (percentWihoutAllergies/100) + '%');
-	$('#interactiveDiv2 #noAllergyBar').width(78 * (percentWihoutAllergies/100) + '%');
+	$('#interactiveDiv2 #noAllergyBar').width(78 * (1 - (percentWithAllergies/100.0)) + '%');
+	$('#interactiveDiv2 #noAllergyBar').width(78 * (1 - (percentWithAllergies/100.0)) + '%');
 	styleRange($('#interactiveDiv2 #noAllergyBar'), (percentNoAllergiesAndOutgoing/100), noAllergyBarColor1, noAllergyBarColor2);
 }
 
@@ -170,7 +171,7 @@ function changeInstructionText(text, style = null) {
 	}
 }
 
-// Watches for changes in the ranges and upgrades background
+// Watches for changes in the ranges and updates the backgrounds
 function rangeInteractions() {
 	$allergyBar.on("change mousemove", function () {
     var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
@@ -192,6 +193,7 @@ function styleRange (el, val, color1, color2) {
          );
 }
 
+// Restarts the quiz and replaces initial variables with pseudo-random values
 function reset () {
 	$('#interactiveDiv2').remove();
 	changeInstructionText('Click on the first range with the percent of people who have allergies.');
@@ -217,6 +219,8 @@ function createNumbers() {
 	correctAnswer = 'No Allergies';
 	correctTimesMoreLikely = 1.5;
 
+	// If it is the first run just use the precalculated values for the quiz.
+	// Figure out the Math for these variables if it isn't the first run
 	if (!firstRun) {
 		percentWithAllergies = Math.round(Math.random() * 90) + 10;
 		percentWihoutAllergies = 100 - percentWithAllergies;
@@ -239,6 +243,7 @@ function createNumbers() {
 	$('#withAllergies').html(percentWithAllergies);
 	$('#outgoingAllergiests').html(percentWithAllergiesAndOutgoing);
 	$('#outgoingNormal').html(percentNoAllergiesAndOutgoing);
+
 	firstRun = false;
 }
 
